@@ -13,7 +13,7 @@ public class Arrays {
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 for (int k = 0; k < z; k++) {
-                    arr[x][y][z] = i + j + k;
+                        arr[x][y][z] = i + j + k;
                 }
             }
         }
