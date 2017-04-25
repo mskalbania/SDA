@@ -1,10 +1,15 @@
 package com.sda;
+/*
+Simple algorithm counting average of first n numbers including 0
+ */
 
 public class Arrays2 {
 
+    private static final int sizeOfArray = 100; //( n numbers )
+
     public static void main(String[] args) {
 
-        int[] arr = new int[100];
+        int[] arr = new int[sizeOfArray];
 
         for (int i = 0; i < arr.length; i++) {
             arr[i] = i;
@@ -15,7 +20,6 @@ public class Arrays2 {
         System.out.println("Av = " + average);
 
         //  showArray(arr);
-
 
     }
 
