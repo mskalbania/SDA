@@ -16,8 +16,10 @@ public class Library {
 
     public void returnBook(String title, String author){
 
-        if(findBook(title,author) >= 0){
-            borrowedBooks.remove(findBook(title,author));
+        int tempBookIndex = findBook(title,author);
+
+        if(tempBookIndex >= 0){
+            borrowedBooks.remove(tempBookIndex);
         }
         else {
             System.out.println("Not found");
