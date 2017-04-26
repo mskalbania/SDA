@@ -1,6 +1,6 @@
 package com.OOP2;
 
-class Car {
+public class Car {
 
     private int wheelCount;
     private String brand;
@@ -25,7 +25,6 @@ class Car {
     void doBlink() {
 
         System.out.println("Car blinked");
-
     }
 
     public int getWheelCount() {
@@ -36,10 +35,11 @@ class Car {
         return brand;
     }
 
-    public void set(int wheelCount){
+    public void set(int wheelCount) {
         this.wheelCount = wheelCount;
     }
-    public void set(String brand){
+
+    public void set(String brand) {
         this.brand = brand;
     }
 
