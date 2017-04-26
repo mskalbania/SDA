@@ -14,11 +14,18 @@ public class Main {
         car1.doBlink();
         car3.doBlink();
 
+        car.set("Audi");
+        car.set(4);
+
+        car1.set("Fiat");
+
+        car2.set(6);
+
         System.out.println(car3.getBrand() + " -----> " + car3.getWheelCount());
         System.out.println(car1.getBrand() + " -----> " + car1.getWheelCount());
         System.out.println(car.getBrand() + " -----> " + car.getWheelCount());
         System.out.println(car2.getBrand() + " -----> " + car2.getWheelCount());
-    }
 
+    }
 
 }

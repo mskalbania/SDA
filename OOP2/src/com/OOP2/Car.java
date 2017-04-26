@@ -36,4 +36,11 @@ class Car {
         return brand;
     }
 
+    public void set(int wheelCount){
+        this.wheelCount = wheelCount;
+    }
+    public void set(String brand){
+        this.brand = brand;
+    }
+
 }
