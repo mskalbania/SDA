@@ -16,19 +16,23 @@ public class Library {
 
     public void borrowBook(String title, String author) {
 
-        Book tempBook = getLibraryBook(title, author,allLibraryBooks);
-        if(tempBook == null){
-            System.out.println("Book not found");
+        if(getLibraryBook(title,author,borrowedBooks) == null) { //check in borrowed
+            if (getLibraryBook(title, author, allLibraryBooks) == null) { //check in all
+                System.out.println("Book not found");
+            } else {
+                borrowedBooks.add(new Book(title, author));
+                System.out.println("Book " + title + " borrowed.");
+            }
         }
-        else{
-            borrowedBooks.add(new Book(title,author));
-            System.out.println("Book " + title + " borrowed.");
+        else {
+            System.out.println("Book already borrowed");
         }
+
     }
 
     public void returnBook(String title, String author) {
 
-        Book tempBook = getLibraryBook(title, author,borrowedBooks);
+        Book tempBook = getLibraryBook(title, author, borrowedBooks);
 
         if (tempBook == null) {
             System.out.println("Book " + title + " " + author + " not found.");
@@ -82,7 +86,7 @@ public class Library {
     }
 
     //getting object book in array list
-    private Book getLibraryBook(String title, String author, ArrayList<Book> list){
+    private Book getLibraryBook(String title, String author, ArrayList<Book> list) {
 
         for (int i = 0; i < list.size(); i++) {
             if (title.equals(list.get(i).getTitle()) &&
