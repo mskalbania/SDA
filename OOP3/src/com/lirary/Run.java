@@ -13,9 +13,12 @@ public class Run {
         library.showBorrowedBooks();
 
 
-        library.returnBook("XX", "XX");
-
+        library.returnBook("AA", "XX");
+        library.returnBook("XX", "AA");
         library.returnBook("AA", "BB");
+
+        library.showBorrowedBooks();
+
         library.returnBook("CC", "DD");
         library.returnBook("EE", "FF");
 
