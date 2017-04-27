@@ -15,15 +15,11 @@ public class Library {
         //Adding books
         for (int i = 1; i < 5; i++) {
             allLibraryBooks.add(new Book("Title" + Integer.toString(1), "Author" + Integer.toString(1)));
-            System.out.println("Added 1");
             allLibraryBooks.add(new Book("Title" + Integer.toString(2), "Author" + Integer.toString(2)));
-            System.out.println("Added 2");
             allLibraryBooks.add(new Book("Title" + Integer.toString(3), "Author" + Integer.toString(3)));
-            System.out.println("Added 3");
             allLibraryBooks.add(new Book("Title" + Integer.toString(4), "Author" + Integer.toString(4)));
-            System.out.println("Added 4");
-
         }
+        removeDuplicates(allLibraryBooks);
     }
 
 
@@ -109,4 +105,20 @@ public class Library {
         return null;
     }
 
+    private void removeDuplicates(ArrayList<Book> checkList) {
+
+        ArrayList<Book> duplicatesList = new ArrayList<>();
+
+        for(int i = 0; i < checkList.size(); i++){
+            for(int j = i + 1; j < checkList.size(); j++){ // searches for duplicates under the i element of the list
+                if(Objects.equals(checkList.get(i).getTitle(), checkList.get(j).getTitle())){  //check for matching title
+                    if(Objects.equals(checkList.get(i).getAuthor(), checkList.get(j).getAuthor())){ //check for matching author
+                        duplicatesList.add(checkList.get(j));
+                    }
+                }
+            }
+        }
+
+        checkList.removeAll(duplicatesList);
+    }
 }
