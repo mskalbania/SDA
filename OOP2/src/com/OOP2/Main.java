@@ -21,11 +21,12 @@ public class Main {
 
         car2.set(6);
 
-
         System.out.println(car3.getBrand() + " -----> " + car3.getWheelCount());
         System.out.println(car1.getBrand() + " -----> " + car1.getWheelCount());
         System.out.println(car.getBrand() + " -----> " + car.getWheelCount());
         System.out.println(car2.getBrand() + " -----> " + car2.getWheelCount());
+
+        System.out.println("--------------------------------");
 
         System.out.println(car == car1); //compare references
         System.out.println(car1.equals(car)); //compare objects
@@ -34,6 +35,8 @@ public class Main {
 
         System.out.println(car == car1); //compare references
         System.out.println(car.equals(car1)); //compare objects
+
+
 
     }
 
