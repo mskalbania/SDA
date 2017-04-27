@@ -1,30 +1,42 @@
 package com.lirary;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Library {
 
-    private ArrayList<Book> allLibraryBooks = new ArrayList<>();
-    private ArrayList<Book> borrowedBooks = new ArrayList<>();
+    private ArrayList<Book> allLibraryBooks;
+    private ArrayList<Book> borrowedBooks;
 
     public Library() {
-        allLibraryBooks.add(new Book("Title1", "Author1"));
-        allLibraryBooks.add(new Book("Title2", "Author2"));
-        allLibraryBooks.add(new Book("Title3", "Author3"));
+        borrowedBooks = new ArrayList<>();
+        allLibraryBooks = new ArrayList<>();
+
+        //Adding books
+        for (int i = 1; i < 5; i++) {
+            allLibraryBooks.add(new Book("Title" + Integer.toString(1), "Author" + Integer.toString(1)));
+            System.out.println("Added 1");
+            allLibraryBooks.add(new Book("Title" + Integer.toString(2), "Author" + Integer.toString(2)));
+            System.out.println("Added 2");
+            allLibraryBooks.add(new Book("Title" + Integer.toString(3), "Author" + Integer.toString(3)));
+            System.out.println("Added 3");
+            allLibraryBooks.add(new Book("Title" + Integer.toString(4), "Author" + Integer.toString(4)));
+            System.out.println("Added 4");
+
+        }
     }
 
 
     public void borrowBook(String title, String author) {
 
-        if(getLibraryBook(title,author,borrowedBooks) == null) { //check in borrowed
+        if (getLibraryBook(title, author, borrowedBooks) == null) { //check in borrowed
             if (getLibraryBook(title, author, allLibraryBooks) == null) { //check in all
                 System.out.println("Book not found");
             } else {
                 borrowedBooks.add(new Book(title, author));
                 System.out.println("Book " + title + " borrowed.");
             }
-        }
-        else {
+        } else {
             System.out.println("Book already borrowed");
         }
 
@@ -73,7 +85,7 @@ public class Library {
     }
 
 
-    //getting index of book in array list
+    //getting index of book in specified array list
     private int getLibraryBookIndex(String title, String author, ArrayList<Book> list) {
 
         for (int i = 0; i < list.size(); i++) {
@@ -85,13 +97,13 @@ public class Library {
         return -1;
     }
 
-    //getting object book in array list
+    //getting object book in specified array list
     private Book getLibraryBook(String title, String author, ArrayList<Book> list) {
 
-        for (int i = 0; i < list.size(); i++) {
-            if (title.equals(list.get(i).getTitle()) &&
-                    author.equals(list.get(i).getAuthor())) {
-                return list.get(i);
+        for (Book aList : list) {
+            if (title.equals(aList.getTitle()) &&
+                    author.equals(aList.getAuthor())) {
+                return aList;
             }
         }
         return null;

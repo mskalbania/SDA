@@ -35,14 +35,14 @@ public class TerminalApp {
                     String tempTitle = scanner.next();
                     System.out.println("Enter author: ");
                     String tempAuthor = scanner.next();
-                    library.borrowBook(tempTitle,tempAuthor);
+                    library.borrowBook(tempTitle, tempAuthor);
                     break;
                 case 5:
                     System.out.println("Enter title: ");
                     String tempTitle2 = scanner.next();
                     System.out.println("Enter author: ");
                     String tempAuthor2 = scanner.next();
-                    library.returnBook(tempTitle2,tempAuthor2);
+                    library.returnBook(tempTitle2, tempAuthor2);
                     break;
                 default:
                     System.out.println("Wrong input key.");
