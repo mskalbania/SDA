@@ -13,13 +13,19 @@ public class Library {
         allLibraryBooks = new ArrayList<>();
 
         //Adding books
-        for (int i = 1; i < 5; i++) {
+        for (int i = 1; i < 10; i++) {
             allLibraryBooks.add(new Book("Title" + Integer.toString(1), "Author" + Integer.toString(1)));
             allLibraryBooks.add(new Book("Title" + Integer.toString(2), "Author" + Integer.toString(2)));
             allLibraryBooks.add(new Book("Title" + Integer.toString(3), "Author" + Integer.toString(3)));
             allLibraryBooks.add(new Book("Title" + Integer.toString(4), "Author" + Integer.toString(4)));
         }
-        removeDuplicates(allLibraryBooks);
+
+        showAllLibraryBooks();
+
+       // removeDuplicates(allLibraryBooks);
+        removeDuplicates2(allLibraryBooks);
+
+
     }
 
 
@@ -121,4 +127,31 @@ public class Library {
 
         checkList.removeAll(duplicatesList);
     }
+
+    private void removeDuplicates2(ArrayList<Book> checkList){
+
+        ArrayList<Book> tempList = new ArrayList<>();
+        ArrayList<Book> duplicatesList = new ArrayList<>();
+
+        for (int i = 0; i < checkList.size(); i++) {
+
+            if(getLibraryBook(checkList.get(i).getTitle(),checkList.get(i).getAuthor(),tempList) == null){
+
+                tempList.add(checkList.get(i));
+
+            }
+            else{
+               // checkList.remove(i); not working this way
+                duplicatesList.add(checkList.get(i));
+            }
+
+        }
+        checkList.removeAll(duplicatesList);
+
+
+    }
+
+
+
+
 }

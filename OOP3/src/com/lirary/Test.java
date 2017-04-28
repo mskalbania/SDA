@@ -8,6 +8,8 @@ public class Test {
 
         Library library = new Library();
 
+        System.out.printf("After running removeDuplicates method\n \n\n\n\n");
+
         library.showAllLibraryBooks();
 
 
