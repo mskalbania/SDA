@@ -2,7 +2,7 @@ public class Run {
 
     public static void main(String[] args) {
 
-        Cinema cinema = new Cinema("Helios",7,10);
+        Cinema cinema = new Cinema("Helios",10,15);
         cinema.showSeats();
         cinema.reserveSeat("A15");
         cinema.reserveSeat("A05");

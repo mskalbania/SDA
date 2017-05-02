@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 class Cinema {
@@ -32,12 +34,16 @@ class Cinema {
     }
 
     private Seat findSeat(String seatNumber){
-        for(Seat seat: seatsList){
-            if(seat.getSeatNumber().equals(seatNumber)){
-                return seat;
-            }
+        Seat tempSeat = new Seat(seatNumber);
+        int findIndex = Collections.binarySearch(seatsList,tempSeat,null);
+        if(findIndex >= 0){
+            return seatsList.get(findIndex);
         }
-        return null;
+        else {
+            return null;
+        }
+
+
     }
 
     void reserveSeat(String seatNumber){
@@ -79,7 +85,7 @@ class Cinema {
     }
 
 
-    private class Seat {
+    private class Seat implements Comparable<Seat> {
         private final String seatNumber;
         private boolean isReserved = false;
 
@@ -110,6 +116,10 @@ class Cinema {
         }
 
 
+        @Override
+        public int compareTo(Seat seat) {
+            return this.seatNumber.compareTo(seat.getSeatNumber());
+        }
     }
 
 }
