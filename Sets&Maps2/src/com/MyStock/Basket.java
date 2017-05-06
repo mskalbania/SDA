@@ -18,11 +18,12 @@ public class Basket {
     public int removeFromBasket(StockItem item, int quantity) {
         if ((item != null) && (quantity > 0)) {
             int inBasket = basketItems.getOrDefault(item, 0);
-
-            if (item.unreserveItem(quantity) >= 0) {
+            int newQuantity = item.unreserveItem(quantity);
+            if (newQuantity > 0) {
                 basketItems.put(item, inBasket - quantity);
+            }else if(newQuantity == 0){
+                basketItems.remove(item);
             }
-
             return inBasket;
         }
         return 0;
@@ -56,6 +57,7 @@ public class Basket {
     }
 
     public void showBasketList() {
+        System.out.println("Basket list: ");
         if (basketItems.isEmpty()) {
             System.out.println("Basket is empty!");
         } else {

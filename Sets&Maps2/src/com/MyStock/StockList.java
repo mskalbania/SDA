@@ -48,22 +48,18 @@ public class StockList {
 
     @Override
     public String toString() {
-        String s = "\n Stock list\n";
+        String s = "\nStock list:\n----------\n";
         double totalCost = 0.0;
         for (Map.Entry<String, StockItem> item : list.entrySet()) {
             StockItem stockItem = item.getValue();
 
-            double itemValue = stockItem.getPrice() * stockItem.quantityInStock();
+            s = s + stockItem.getName() + " | " + stockItem.getPrice() + " | " +
+                    stockItem.quantityInStock() + " | " + stockItem.getQuantityReserved() +
+                    "\n";
 
-            s = s + stockItem + ". There are " + stockItem.quantityInStock() + " in stock.";
-            s = s + "\n" + stockItem.getQuantityReserved() + " is reserved.";
-            s = s + " Total value of items: ";
-            s = s + String.format("%2f", itemValue) + "\n";
-
-            totalCost += itemValue;
         }
 
-        return s + "Total stock value " + totalCost;
+        return s;
     }
 }
 
