@@ -4,6 +4,7 @@ public class StockItem implements Comparable<StockItem> {
     private final String name;
     private double price;
     private int quantityStock = 0;
+    private int quantityReserved = 0;
 
     public StockItem(String name, double price) {
         this.name = name;
@@ -35,6 +36,36 @@ public class StockItem implements Comparable<StockItem> {
         }
     }
 
+    public int reserveItem(int quantity) {
+        if (quantity > 0)
+            return adjustReservedItems(quantity);
+        else
+            return 0;
+    }
+
+    public int unreserveItem(int quantity) {
+        if (quantity > 0)
+            return adjustReservedItems(-quantity);
+        else
+            return 0;
+    }
+
+    private int adjustReservedItems(int quantity) {
+        int actualReserved = this.quantityReserved;
+        if (quantity <= this.quantityStock - this.quantityReserved) {
+            if ((actualReserved += quantity) >= 0) {
+                this.quantityReserved += quantity;
+                return quantityReserved;
+            }
+        }
+        return -1;
+    }
+
+    public int getQuantityReserved() {
+        return this.quantityReserved;
+    }
+
+
     public void adjustStock(int quantity) {
         int newQuantity = this.quantityStock + quantity;
         if (newQuantity >= 0) {
@@ -43,12 +74,12 @@ public class StockItem implements Comparable<StockItem> {
     }
 
     @Override
-    public boolean equals(Object obj){
-        if(this == obj){
+    public boolean equals(Object obj) {
+        if (this == obj) {
             return true;
         }
 
-        if((obj == null) || obj.getClass() != this.getClass()) {
+        if ((obj == null) || obj.getClass() != this.getClass()) {
             return false;
         }
 
@@ -56,16 +87,16 @@ public class StockItem implements Comparable<StockItem> {
     }
 
     @Override
-    public int hashCode(){
+    public int hashCode() {
         return this.name.hashCode() + 1;
     }
 
     @Override
     public int compareTo(StockItem stockItem) {
-        if(this == stockItem){
+        if (this == stockItem) {
             return 0;
         }
-        if(stockItem != null){
+        if (stockItem != null) {
             return this.name.compareTo(stockItem.getName());
         }
 
@@ -73,7 +104,7 @@ public class StockItem implements Comparable<StockItem> {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return this.name + " | Price: " + this.price + " | Quantity: " + this.quantityStock;
     }
 }

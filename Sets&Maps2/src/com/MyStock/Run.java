@@ -29,22 +29,44 @@ public class Run {
         temp = new StockItem("bottle of water", 2.14, 300);
         stockList.addStock(temp);
 
-        temp = new StockItem("bottle of cola", 3.7, 45);
+        temp = new StockItem("bottle of cola", 3.7, 5);
         stockList.addStock(temp);
 
         System.out.println(stockList);
-
+        System.out.println("--------------------------------------------");
         Basket basket = new Basket("myBasket");
-        sellItem(basket,"car",1);
-        System.out.println(basket);
-        sellItem(basket,"bottle of cola", 4);
-        System.out.println(basket);
-        sellItem(basket,"bottle of water", 50);
-        System.out.println(basket);
-        sellItem(basket,"someString",3);
-        System.out.println(basket);
+        basket.addToBasket(stockList.getItemFromStock("bottle of cola"), 2);
+        basket.addToBasket(stockList.getItemFromStock("bottle of cola"), 3);
+        basket.addToBasket(stockList.getItemFromStock("bottle of cola"), 10);
+        basket.addToBasket(stockList.getItemFromStock("car"), 1);
+        basket.addToBasket(stockList.getItemFromStock("car"), 1);// cant reserve more - cars in stock : 1
+        System.out.println("Basket items: ");
+        basket.showBasketList();
+        System.out.println(stockList);
 
-        stockList.getAllItemsFromStock().get("car").adjustStock(2000);
+        basket.checkOut();
+
+        basket.showBasketList();
+
+        System.out.println(stockList);
+        basket.addToBasket(stockList.getItemFromStock("bottle of cola"), 3);
+        basket.addToBasket(stockList.getItemFromStock("bread"), 100);
+        basket.addToBasket(stockList.getItemFromStock("cake"), 10);
+
+        basket.removeFromBasket(stockList.getItemFromStock("cake"), 8);
+        basket.showBasketList();
+        basket.removeFromBasket(stockList.getItemFromStock("cake"), 5);
+        basket.removeFromBasket(stockList.getItemFromStock("cake"), 1);
+        basket.removeFromBasket(stockList.getItemFromStock("cake"), 1);
+        basket.removeFromBasket(stockList.getItemFromStock("cake"), 1);
+        basket.addToBasket(stockList.getItemFromStock("cake"), 5);
+        basket.addToBasket(stockList.getItemFromStock("cake"), 10);
+        basket.addToBasket(stockList.getItemFromStock("cake"), -10);
+        basket.addToBasket(stockList.getItemFromStock("cake"), 5);
+
+        basket.removeFromBasket(stockList.getItemFromStock("cake"), 9);
+        basket.checkOut();
+        basket.showBasketList();
         System.out.println(stockList);
 
     }
