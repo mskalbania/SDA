@@ -49,14 +49,23 @@ public class StockItem implements Comparable<StockItem> {
         else
             return 0;
     }
+//
+//    private int adjustReservedItems2(int quantity) {
+//        int actualReserved = this.quantityReserved;
+//        if (quantity <= this.quantityStock - this.quantityReserved) {
+//            if ((actualReserved += quantity) >= 0) {
+//                this.quantityReserved += quantity;
+//                return quantityReserved;
+//            }
+//        }
+//        return -1;
+//    }
 
-    private int adjustReservedItems(int quantity) {
-        int actualReserved = this.quantityReserved;
-        if (quantity <= this.quantityStock - this.quantityReserved) {
-            if ((actualReserved += quantity) >= 0) {
-                this.quantityReserved += quantity;
-                return quantityReserved;
-            }
+    private int adjustReservedItems(int quantity){
+        int newQuantityReserved = this.quantityReserved + quantity;
+        if(newQuantityReserved <= this.quantityStock && newQuantityReserved >= 0){
+            this.quantityReserved = newQuantityReserved;
+            return this.quantityReserved;
         }
         return -1;
     }
@@ -64,7 +73,6 @@ public class StockItem implements Comparable<StockItem> {
     public int getQuantityReserved() {
         return this.quantityReserved;
     }
-
 
     public void adjustStock(int quantity) {
         int newQuantity = this.quantityStock + quantity;

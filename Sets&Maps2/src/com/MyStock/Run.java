@@ -63,11 +63,20 @@ public class Run {
         basket.addToBasket(stockList.getItemFromStock("cake"), 10);
         basket.addToBasket(stockList.getItemFromStock("cake"), -10);
         basket.addToBasket(stockList.getItemFromStock("cake"), 5);
-
-        basket.removeFromBasket(stockList.getItemFromStock("cake"), 9);
         basket.checkOut();
         basket.showBasketList();
+
+        System.out.println(" ------------ ");
+        basket.addToBasket(stockList.getItemFromStock("lettuce"), 3);
+        basket.addToBasket(stockList.getItemFromStock("lettuce"), 3);
+        basket.addToBasket(stockList.getItemFromStock("lettuce"), 10);
+        basket.removeFromBasket(stockList.getItemFromStock("lettuce"), 3);
+        basket.removeFromBasket(stockList.getItemFromStock("lettuce"), 3);
+
+
         System.out.println(stockList);
+        basket.showBasketList();
+
 
     }
 

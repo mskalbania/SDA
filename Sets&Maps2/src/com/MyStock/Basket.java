@@ -18,9 +18,11 @@ public class Basket {
     public int removeFromBasket(StockItem item, int quantity) {
         if ((item != null) && (quantity > 0)) {
             int inBasket = basketItems.getOrDefault(item, 0);
+
             if (item.unreserveItem(quantity) >= 0) {
                 basketItems.put(item, inBasket - quantity);
             }
+
             return inBasket;
         }
         return 0;
