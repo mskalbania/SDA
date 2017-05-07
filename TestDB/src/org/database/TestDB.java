@@ -11,10 +11,14 @@ public class TestDB {
 
     public static void main(String[] args) {
 
-        try (Connection connection = DriverManager.getConnection(CONNECTION_URL);
-             Statement statement = connection.createStatement()) {
+        try {
+            Connection connection = DriverManager.getConnection(CONNECTION_URL);
+            Statement statement = connection.createStatement();
             statement.execute("CREATE TABLE IF NOT EXISTS contacts(name TEXT, phone INTEGER, email TEXT)");
-        } catch (SQLException e) {
+
+            statement.close();
+            connection.close();
+        }catch (SQLException e) {
             e.printStackTrace();
         }
     }
