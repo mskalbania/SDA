@@ -14,11 +14,12 @@ public class Fleet {
     }
 
     public boolean addVehicle(String id, Vehicle vehicle) {
-        if (id != null && vehicle != null) {
-            if (!allVehicleList.containsKey(id) && id.equals(vehicle.getId())) {
-                this.allVehicleList.put(id, vehicle);
-                return true;
-            }
+
+        Vehicle tempVehicle = allVehicleList.getOrDefault(id, null);
+
+        if(tempVehicle == null && id.equals(vehicle.getId())){ //checking if ids are equal
+            allVehicleList.put(id, vehicle);
+            return true;
         }
         return false;
     }
