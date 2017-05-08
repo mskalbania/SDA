@@ -1,3 +1,5 @@
+import java.util.Random;
+
 public abstract class Vehicle {
 
     private final String id;
@@ -19,7 +21,7 @@ public abstract class Vehicle {
         this.brand = brand;
         this.weight = weight;
         this.course = course;
-        this.actualLocation = new GpsTracker(0, 0);
+        this.actualLocation = new GpsTracker();
     }
 
     public GpsTracker getActualLocation() {
@@ -54,10 +56,6 @@ public abstract class Vehicle {
         this.course = course;
     }
 
-    public void setActualLocation(double latitude, double longitude) {
-        this.actualLocation = new GpsTracker(latitude, longitude);
-    }
-
     @Override
     public int hashCode() {
         return this.id.hashCode() + 1;
@@ -74,15 +72,14 @@ public abstract class Vehicle {
         return false;
     }
 
-
-
     public class GpsTracker {
         private double latitude;
         private double longitude;
 
-        GpsTracker(double latitude, double longitude) {
-            this.latitude = latitude;
-            this.longitude = longitude;
+        GpsTracker(){
+            Random generator = new Random();
+            this.latitude = generator.nextInt(1000);
+            this.longitude = generator.nextInt(1000);
         }
 
         @Override

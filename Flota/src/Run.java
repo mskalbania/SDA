@@ -1,5 +1,6 @@
 import java.util.Map;
 
+
 public class Run {
 
     public static void main(String[] args) {
@@ -15,11 +16,15 @@ public class Run {
         Bus bus1 = new Bus("SBE31236", "Ford", 4000.0, 3000);
         myFleet.addVehicle("SBE31236", bus1);
 
-        myFleet.getVehicle("SBE09952").setWeight(1000000.0);
-        myFleet.getVehicle("SBE09952").setActualLocation(45.00,14.00);
+
+        //testing for duplicate / overwriting existing vehicle
+        bus1 = new Bus("SBE31236", "TEST", 4000.0, 3000);
+        myFleet.addVehicle("SBE31236", bus1);
+
+        myFleet.getVehicle("SBE32456").setWeight(999.9);
+        myFleet.getVehicle("SBE32456").setCourse(342.12);
 
         showVehicles(myFleet.getAllVehicleList());
-
     }
 
     public static void showVehicles(Map<String, Vehicle> list) {
@@ -33,7 +38,6 @@ public class Run {
                     " | " + vehicles.getValue().getWeight() +
                     " | " + vehicles.getValue().getCourse() +
                     " | " + vehicles.getValue().getActualLocation());
-
         }
     }
 }

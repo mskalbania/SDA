@@ -15,7 +15,7 @@ public class Fleet {
 
     public boolean addVehicle(String id, Vehicle vehicle) {
         if (id != null && vehicle != null) {
-            if (id.equals(vehicle.getId())) {
+            if (!allVehicleList.containsKey(id) && id.equals(vehicle.getId())) {
                 this.allVehicleList.put(id, vehicle);
                 return true;
             }
