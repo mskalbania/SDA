@@ -76,7 +76,7 @@ public abstract class Vehicle {
         private double latitude;
         private double longitude;
 
-        GpsTracker(){
+        GpsTracker() {
             Random generator = new Random();
             this.latitude = generator.nextInt(1000);
             this.longitude = generator.nextInt(1000);
