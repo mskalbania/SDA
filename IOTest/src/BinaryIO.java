@@ -1,14 +1,14 @@
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 public class BinaryIO {
 
     private Map<String, String> randomList;
+    private Set<Book> books;
 
     public BinaryIO() {
         this.randomList = new HashMap<>();
+        this.books = new HashSet<>();
     }
 
     public void fillMap(int amount) {
@@ -16,6 +16,16 @@ public class BinaryIO {
         for (int i = 0; i < amount; i++) {
             randomList.put(generateRandomWord(10), generateRandomWord(10));
         }
+    }
+
+    public void fillSet(int amount) {
+        for (int i = 0; i < amount; i++) {
+            books.add(new Book(generateRandomWord(5), generateRandomWord(10)));
+        }
+    }
+
+    public Set<Book> getBooks() {
+        return books;
     }
 
     public Map<String, String> getRandomList() {
@@ -26,6 +36,29 @@ public class BinaryIO {
         String output = "";
         for (int i = 0; i < length; i++) {
             output += (char) (new Random().nextInt(25) + 65);
+        }
+        return output;
+    }
+
+    public void writeSetToExternalFile() throws IOException {
+        try (ObjectOutputStream writer = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("data2.dat")))) {
+            for (Book book : books) {
+                writer.writeObject(book);
+            }
+        }
+    }
+
+    public Set<Book> readSetFromExternalFile() throws IOException, ClassNotFoundException {
+        Set<Book> output = new HashSet<>();
+        boolean eof = false;
+        try (ObjectInputStream reader = new ObjectInputStream(new BufferedInputStream(new FileInputStream("data2.dat")))) {
+            while (!eof) {
+                try {
+                    output.add(((Book) reader.readObject()));
+                } catch (EOFException e) {
+                    eof = true;
+                }
+            }
         }
         return output;
     }
