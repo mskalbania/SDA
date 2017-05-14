@@ -1,4 +1,5 @@
 import java.io.*;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -42,6 +43,7 @@ public class SavingReadingService {
             try (DataOutputStream writer = openOutputStream()) {
                 writer.writeUTF(id);
                 writer.writeUTF(description);
+                spots.put(id,description);
                 return true;
             } catch (IOException ioe) {
                 throw new RuntimeException("Caused by IOE");
@@ -50,7 +52,24 @@ public class SavingReadingService {
         return false;
     }
 
-    public void clearAll(){
+    //NOTE: remove location ~O(n) speed (not efficient cause of file being rewritten each time)
+    //possible ways to fix it - Use Random Access Class (probably involves rebuilding entire class)
+    public void removeLocation(String id) {
+        Map<String, String> tempMap = new TreeMap<>(spots);
+        tempMap.remove(id);
+        clearAll();
+        spots = tempMap;
+        try (DataOutputStream writer = openOutputStream()) {
+            for (Map.Entry<String, String> entry : spots.entrySet()) {
+                writer.writeUTF(entry.getKey());
+                writer.writeUTF(entry.getValue());
+            }
+        } catch (IOException ioe) {
+            throw new RuntimeException("Caused by IOE");
+        }
+    }
+
+    public void clearAll() {
         try {
             new FileOutputStream("locs.dat");
             spots = new TreeMap<>();
