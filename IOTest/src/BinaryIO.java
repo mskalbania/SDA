@@ -72,20 +72,20 @@ public class BinaryIO {
         }
     }
 
-    public Map<String, String> readMapFromExternalFile() throws IOException {
-        try (DataInputStream reader = new DataInputStream(new BufferedInputStream(new FileInputStream("output.dat")))) {
-            Map<String, String> output = new HashMap<>();
-            boolean eof = false;
-            while (!eof) {
-                try {
-                    String key = reader.readUTF();
-                    String value = reader.readUTF();
-                    output.put(key, value);
-                } catch (EOFException e) {
-                    eof = true;
-                }
-            }
-            return output;
-        }
-    }
+//    public Map<String, String> readMapFromExternalFile() throws IOException {
+//        try (DataInputStream reader = new DataInputStream(new BufferedInputStream(new FileInputStream("output.dat")))) {
+//            Map<String, String> output = new HashMap<>();
+//            boolean eof = false;
+//            while (!eof) {
+//                try {
+//                    String key = reader.readUTF();
+//                    String value = reader.readUTF();
+//                    output.put(key, value);
+//                } catch (EOFException e) {
+//                    eof = true;
+//                }
+//            }
+//            return output;
+//        }
+//    }
 }

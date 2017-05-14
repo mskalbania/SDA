@@ -7,27 +7,45 @@ public class Run {
     public static void main(String[] args) {
 
         BinaryIO binaryIO = new BinaryIO();
-        //binaryIO.fillMap(100);
-        //showMap(binaryIO.getRandomList());
+        binaryIO.fillMap(500);
 
-        //binaryIO.fillSet(100);
-        //showSet(binaryIO.getBooks());
-
+        BinaryIO binaryNIO = new JavaNIO();
+        binaryNIO.fillMap(500);
         try {
-            //binaryIO.writeSetToExternalFile();
-            showSet(binaryIO.readSetFromExternalFile());
+            long start = System.currentTimeMillis();
+            binaryNIO.writeMapToExternalFile();
+            System.out.println("Execution time NIO was : " + (System.currentTimeMillis() - start));
 
-        }catch (IOException | ClassNotFoundException e){
-            e.printStackTrace();
-        }
-
-/*        try {
+            start = System.currentTimeMillis();
             binaryIO.writeMapToExternalFile();
-            showMap(binaryIO.readMapFromExternalFile());
+            System.out.println("Execution time IO was : " + (System.currentTimeMillis() - start));
 
         } catch (IOException e) {
             e.printStackTrace();
-        }*/
+        }
+
+
+//        binaryIO.fillMap(100);
+//        showMap(binaryIO.getRandomList());
+//
+//        binaryIO.fillSet(100);
+//        showSet(binaryIO.getBooks());
+
+//        try {
+//            //binaryIO.writeSetToExternalFile();
+//            showSet(binaryIO.readSetFromExternalFile());
+//
+//        }catch (IOException | ClassNotFoundException e){
+//            e.printStackTrace();
+//        }
+//
+//        try {
+//            binaryIO.writeMapToExternalFile();
+//            showMap(binaryIO.readMapFromExternalFile());
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
     }
